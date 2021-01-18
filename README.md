@@ -41,6 +41,6 @@ See above fireship.io above for firebase related questions.
 
 Hopefully this gets you going.  If I forgot something about dgraph, post a question here:
 
-https://discuss.dgraph.io/t/support-firebase-jwt-token-verification/9447/40?u=jdgamble555
+https://discuss.dgraph.io/t/support-firebase-jwt-token-verification/9447/40
 
 `npm run dev`
