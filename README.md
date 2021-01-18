@@ -1,8 +1,6 @@
-*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+# Svelte (typescript), Slash DGraph, Firebase Auth, and Subscriptions (apollo web sockets)
 
----
-
-# Svelte, DGraph, GraphQL, Typescript, Firebase Auth, and Web Sockets
+![App](https://discuss-dgraph-io.s3.dualstack.us-west-1.amazonaws.com/original/2X/c/cd876438a01db400c9cffc85d545cc82d9651da2.png)
 
 This app creates a firebase CRUD todo list next to a dgraph CRUD todo list...
 
@@ -43,6 +41,6 @@ See above fireship.io above for firebase related questions.
 
 Hopefully this gets you going.  If I forgot something about dgraph, post a question here:
 
-https://discuss.dgraph.io/t/authentication-with-firebase/11928/16
+https://discuss.dgraph.io/t/support-firebase-jwt-token-verification/9447/40?u=jdgamble555
 
 `npm run dev`
