@@ -39,8 +39,10 @@ match /todos/{document=**} {
 ```
 See above fireship.io above for firebase related questions.
 
-Hopefully this gets you going.  If I forgot something about dgraph, post a question here:
+Hopefully this gets you going.  
 
-https://discuss.dgraph.io/t/support-firebase-jwt-token-verification/9447/40
+See here for dgraph related questions:
+
+https://discuss.dgraph.io/
 
 `npm run dev`
