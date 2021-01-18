@@ -2,15 +2,16 @@
 
 ---
 
-# DGraph, GraphQL, Typescript, Firebase Auth, and Web Sockets
+# Svelte, DGraph, GraphQL, Typescript, Firebase Auth, and Web Sockets
 
-This app creates a firebase todo list next to a dgraph todo list...
+This app creates a firebase CRUD todo list next to a dgraph CRUD todo list...
 
 Note: The firebase part of the code was taken from: https://github.com/fireship-io/182-svelte-firebase
 
 See: https://fireship.io/lessons/svelte-v3-overview-firebase/
 
 ---
+(Download the project, `npm i` then...)
 
 1.) Create an **/src/config.json** file like the one here:
 
@@ -43,3 +44,5 @@ See above fireship.io above for firebase related questions.
 Hopefully this gets you going.  If I forgot something about dgraph, post a question here:
 
 https://discuss.dgraph.io/t/authentication-with-firebase/11928/16
+
+`npm run dev`
