@@ -39,10 +39,10 @@ match /todos/{document=**} {
 ```
 See above fireship.io above for firebase related questions.
 
-Hopefully this gets you going.  
-
 See here for dgraph related questions:
 
 https://discuss.dgraph.io/
+
+Hopefully this gets you going.  
 
 `npm run dev`
