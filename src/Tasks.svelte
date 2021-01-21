@@ -1,6 +1,5 @@
 <script lang="ts">
   import { GET_TASKS, ADD_TASK, DEL_TASK, UPDATE_TASK } from "./queries";
-  import { client } from "./apollo";
   import { subscribe, mutation } from "svelte-apollo";
   import TaskItem from "./TaskItem.svelte";
 
@@ -17,7 +16,7 @@
   // User ID passed from parent
   export let user = undefined;
 
-  const getTasks = subscribe(client, { query: GET_TASKS } as any) as any;
+  const getTasks = subscribe(GET_TASKS);
   const addTask = mutation(ADD_TASK);
   const delTask = mutation(DEL_TASK);
   const updateTask = mutation(UPDATE_TASK);
@@ -52,7 +51,7 @@
     }
   }
 
-  async function toggleStatus(event: any) {
+  async function toggle(event: any) {
     const { id, newStatus } = event.detail;
     try {
       await updateTask({
@@ -71,7 +70,7 @@
   };
 </script>
 
-<h1>DGraph Version</h1>
+<h1>Apollo DGraph Version</h1>
 <div>
   {#if $getTasks.loading}
     Loading...
@@ -88,7 +87,7 @@
             text={task.title}
             completed={task.completed}
             on:remove={remove}
-            on:toggle={toggleStatus}
+            on:toggle={toggle}
           />
         </li>
       {/each}

@@ -28,6 +28,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.7",
     "@rollup/plugin-json": "^4.1.0",
+    "@urql/svelte": "^1.1.4",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link-context": "^1.0.20",
@@ -37,10 +38,12 @@
     "firebase": "^8.2.1",
     "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
+    "graphql-ws": "^4.1.1",
     "rxfire": "^4.0.0",
     "rxjs": "^6.6.3",
     "sirv-cli": "^1.0.0",
     "subscriptions-transport-ws": "^0.9.18",
-    "svelte-apollo": "^0.4.0"
+    "svelte-apollo": "^0.4.0",
+    "urql": "^1.11.6"
   }
 }

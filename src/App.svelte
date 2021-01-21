@@ -4,7 +4,7 @@
   import Tasks from "./Tasks.svelte";
   import Profile from "./Profile.svelte";
   import Todos from "./Todos.svelte";
-
+  import URL from "./URL.svelte";
   import { auth, googleProvider } from "./firebase";
   import { authState } from "rxfire/auth";
   import { ADD_USER } from "./queries";
@@ -47,7 +47,7 @@
           },
         },
       });
-    } catch (e: any) {
+    } catch (e) {
       console.log(e);
     }
   }
@@ -63,11 +63,19 @@
     <button on:click={() => auth.signOut()}>Logout</button>
     <hr />
     <Todos uid={user.uid} />
-  {:else}<button on:click={login}> Signin with Google </button>{/if}
+  {:else}
+    <button on:click={login}>Signin with Google</button>
+  {/if}
 </section>
 
 <section>
   {#if user}
     <Tasks {user} />
+  {/if}
+</section>
+
+<section>
+  {#if user}
+    <URL {user} />
   {/if}
 </section>
