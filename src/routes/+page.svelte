@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Todos from '$components/todos.svelte';
-	import { loginWithGoogle, logout, user } from '$lib/database';
+	import { db } from '$lib/database';
+	const { user, logout, loginWithGoogle } = db;
 </script>
 
 <section>

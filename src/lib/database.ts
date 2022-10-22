@@ -1,32 +1,13 @@
 
 // -- Firebase --
 
-import {
-    _addTodo,
-    _deleteTodo,
-    _getTodos,
-    _loginWithGoogle,
-    _logout,
-    _updateTodo,
-    _user
-} from './databases/firebase';
+/*import { firebase_adapter } from './databases/firebase';
 
+export const db = new firebase_adapter();*/
 
-// auth
+// -- Supabase --
 
-export const logout = _logout;
-export const loginWithGoogle = _loginWithGoogle;
-export const user = _user;
+import { supabase_adapter } from './databases/supabase';
 
-// todos
-
-export const getTodos = _getTodos;
-export const addTodo = _addTodo
-export const deleteTodo = _deleteTodo;
-export const updateTodo = _updateTodo;
-
-
-
-
-
+export const db = new supabase_adapter();
 

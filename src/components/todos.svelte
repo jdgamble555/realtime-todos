@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { addTodo, deleteTodo, getTodos, updateTodo, user } from '$lib/database';
+	import { db } from '$lib/database';
+	const { getTodos, addTodo, updateTodo, deleteTodo, user } = db;
 
 	const add = async (e: SubmitEvent) => {
 		const t = e.target as HTMLFormElement;
