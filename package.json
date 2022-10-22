@@ -32,6 +32,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@specialdoom/proi-ui": "^3.0.2",
+		"@supabase/supabase-js": "^2.0.4",
 		"firebase": "^9.12.1"
 	}
 }
