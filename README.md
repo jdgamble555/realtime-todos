@@ -11,6 +11,8 @@ TODO:
 - Hasura
 
 [Demo](https://realtime-todos.vercel.app/)
+
+For more info, see [Code.Build](https://code.build)
 ____
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
