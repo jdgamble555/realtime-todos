@@ -46,7 +46,7 @@ export class supabase_adapter {
                 }
                 this.todos = snap.data ? snap.data : [];
                 this.set(this.todos);
-            }).unsubscribe;
+            })
     });
 
     addTodo = async (_uid: string, text: string) => {
