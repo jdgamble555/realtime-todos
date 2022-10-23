@@ -38,7 +38,7 @@ export class supabase_adapter {
 
     getTodos = (uid: string) => readable<Todo[]>([], (set) => {
         this.set = set;
-        return realtime(supabase).from('todos').eq('uid', uid)
+        return realtime<Todo>(supabase).from('todos').eq('uid', uid)
             .subscribe((snap) => {
                 if (snap.payload.eventType === 'INSERT') {
                     // get rid of optimistic insert
