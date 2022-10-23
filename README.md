@@ -1,12 +1,16 @@
 # create-svelte
 
-A realtime todo app using adapters for Firebase and Supabase.
+A realtime todo app using adapters for:
 
-[Demo](https://realtime-todos.vercel.app/)
+- Firebase
+- Supabase
 
 TODO:
+- Firebase RTDB
 - Dgraph
 - Hasura
+
+[Demo](https://realtime-todos.vercel.app/)
 ____
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
