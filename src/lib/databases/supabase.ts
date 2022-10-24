@@ -22,34 +22,40 @@ export class supabase_adapter {
 
     private updateTodos = () => this.set(this.todos);
 
-    // auth
-
-    loginWithGoogle = async () => await supabase.auth.signInWithOAuth({ provider: 'google' });
-
-    logout = async () => await supabase.auth.signOut();
+    // auth class
 
     user = readable<User | null>(null, (set) => {
-        return authUser(supabase).subscribe((user) => {
+        return authUser(supabase).subscribe(user => {
             set(user ? supabase_to_user(user) : null);
         });
     });
 
+    async loginWithGoogle() {
+        await supabase.auth.signInWithOAuth({ provider: 'google' });
+    }
+
+    async logout() {
+        await supabase.auth.signOut();
+    }
+
     // todos
 
-    getTodos = (uid: string) => readable<Todo[]>([], (set) => {
-        this.set = set;
-        return realtime<Todo>(supabase).from('todos').eq('uid', uid)
-            .subscribe((snap) => {
-                if (snap.payload.eventType === 'INSERT') {
-                    // get rid of optimistic insert
-                    this.todos.pop();
-                }
-                this.todos = snap.data ? snap.data : [];
-                this.set(this.todos);
-            })
-    });
+    getTodos(uid: string) {
+        return readable<Todo[]>([], (set) => {
+            this.set = set;
+            return realtime<Todo>(supabase).from('todos').eq('uid', uid)
+                .subscribe((snap) => {
+                    if (snap.payload.eventType === 'INSERT') {
+                        // get rid of optimistic insert
+                        this.todos.pop();
+                    }
+                    this.todos = snap.data ? snap.data : [];
+                    this.set(this.todos);
+                })
+        });
+    }
 
-    addTodo = async (_uid: string, text: string) => {
+    async addTodo(_uid: string, text: string) {
 
         // optimistic insert
         this.todos.push({ id: '0x', text, complete: false, createdAt: new Date() });
@@ -57,9 +63,9 @@ export class supabase_adapter {
 
         // real add
         await supabase.from('todos').insert({ text });
-    };
+    }
 
-    updateTodo = async (id: string, complete: boolean) => {
+    async updateTodo(id: string, complete: boolean) {
 
         // optimistic update
         const rec = this.todos.find(r => r['id'] === id) as Todo;
@@ -68,9 +74,9 @@ export class supabase_adapter {
 
         // real update
         await supabase.from('todos').update({ complete }).eq('id', id);
-    };
+    }
 
-    deleteTodo = async (id: string) => {
+    async deleteTodo(id: string) {
 
         // optimistic delete
         this.todos.splice(this.todos.findIndex(r => r['id'] === id), 1);
@@ -78,5 +84,5 @@ export class supabase_adapter {
 
         // real delete
         await supabase.from('todos').delete().eq('id', id);
-    };
+    }
 }
