@@ -31,11 +31,17 @@ export class supabase_adapter {
     });
 
     async loginWithGoogle() {
-        await supabase.auth.signInWithOAuth({ provider: 'google' });
+        const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
+        if (error) {
+            console.error(error);
+        }
     }
 
     async logout() {
-        await supabase.auth.signOut();
+        const { error } = await supabase.auth.signOut();
+        if (error) {
+            console.error(error);
+        }
     }
 
     // todos
