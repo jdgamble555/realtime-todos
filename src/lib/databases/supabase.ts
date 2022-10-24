@@ -1,13 +1,13 @@
 import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
 import type { Todo } from '$lib/todo.model';
 import type { User } from '$lib/user.model';
-import { createClient, type User as SB_User } from '@supabase/supabase-js';
+import { createClient, type User as Supabase_User } from '@supabase/supabase-js';
 import { authUser, realtime } from 'j-supabase';
 import { readable, type Subscriber } from 'svelte/store';
 
 const supabase = createClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY);
 
-const supabase_to_user = (i: SB_User): User => ({
+const supabase_to_user = (i: Supabase_User): User => ({
     displayName: i.user_metadata['full_name'],
     email: i.email as string,
     uid: i.id,
