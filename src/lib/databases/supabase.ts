@@ -50,7 +50,7 @@ export class supabase_adapter {
         return readable<Todo[]>([], (set) => {
             this.set = set;
             return realtime<Todo>(supabase).from('todos').eq('uid', uid)
-                .subscribe((snap) => {
+                .subscribe(snap => {
                     if (snap.payload.eventType === 'INSERT') {
                         // get rid of optimistic insert
                         this.todos.pop();
@@ -68,7 +68,10 @@ export class supabase_adapter {
         this.updateTodos();
 
         // real add
-        await supabase.from('todos').insert({ text });
+        const { error } = await supabase.from('todos').insert({ text });
+        if (error) {
+            console.error(error);
+        }
     }
 
     async updateTodo(id: string, complete: boolean) {
@@ -79,7 +82,10 @@ export class supabase_adapter {
         this.updateTodos();
 
         // real update
-        await supabase.from('todos').update({ complete }).eq('id', id);
+        const { error } = await supabase.from('todos').update({ complete }).eq('id', id);
+        if (error) {
+            console.error(error);
+        }
     }
 
     async deleteTodo(id: string) {
@@ -89,6 +95,9 @@ export class supabase_adapter {
         this.updateTodos();
 
         // real delete
-        await supabase.from('todos').delete().eq('id', id);
+        const { error } = await supabase.from('todos').delete().eq('id', id);
+        if (error) {
+            console.error(error);
+        }
     }
 }
