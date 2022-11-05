@@ -1,33 +1,38 @@
 <script lang="ts">
 	import { db } from '$lib/database';
-	const { getTodos, addTodo, updateTodo, deleteTodo, user } = db;
+
+	export let user;
+
+	const { deleteTodo, updateTodo, addTodo, getTodos } = db(user.uid);
+	const todos = getTodos;
 
 	const add = async (e: SubmitEvent) => {
 		const t = e.target as HTMLFormElement;
 		const v = t.text.value;
 		t.reset();
-		await addTodo($user!.uid, v);
+		addTodo(v);
 	};
-	const toggle = async (id: string, complete: boolean) => await updateTodo(id, !complete);
-	const remove = async (id: string) => await deleteTodo(id);
-	const todos = getTodos($user!.uid);
+	const toggle = (id: string, complete: boolean) => updateTodo(id, !complete);
+	const remove = (id: string) => deleteTodo(id);
 </script>
 
-<ol>
-	{#each $todos as todo}
-		<li>
-			<span>{todo.text}</span>
-			<button on:click={() => toggle(todo.id, todo.complete)}>
-				{#if todo.complete}
-					✔️
-				{:else}
-					❌
-				{/if}
-			</button>
-			<button on:click={() => remove(todo.id)}> 🗑 </button>
-		</li>
-	{/each}
-</ol>
+{#if $todos}
+	<ol>
+		{#each $todos as todo}
+			<li>
+				<span>{todo.text}</span>
+				<button on:click={() => toggle(todo.id, todo.complete)}>
+					{#if todo.complete}
+						✔️
+					{:else}
+						❌
+					{/if}
+				</button>
+				<button on:click={() => remove(todo.id)}> 🗑 </button>
+			</li>
+		{/each}
+	</ol>
+{/if}
 
 <form on:submit|preventDefault={add}>
 	<input name="text" />

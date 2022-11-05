@@ -1,7 +1,9 @@
 <script lang="ts">
 	import Todos from '$components/todos.svelte';
-	import { db } from '$lib/database';
-	const { user, logout, loginWithGoogle } = db;
+	import { auth } from '$lib/database';
+	let user: any, logout: any, loginWithGoogle: any;
+
+	({ user, logout, loginWithGoogle } = auth);
 </script>
 
 <section>
@@ -11,7 +13,7 @@
 		<button on:click={logout}>Logout</button>
 		<hr />
 		<h1>Realtime Todos</h1>
-		<Todos />
+		<Todos {user} />
 	{:else}
 		<button on:click={loginWithGoogle}>Signin with Google</button>
 	{/if}

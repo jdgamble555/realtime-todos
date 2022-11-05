@@ -1,13 +1,8 @@
-
-// -- Firebase --
-
-/*import { firebase_adapter } from './databases/firebase';
-
-export const db = new firebase_adapter();*/
-
 // -- Supabase --
 
-import { supabase_adapter } from './databases/supabase';
+import { supabase_todo_adapter, supabase_auth_adapter } from './databases/supabase';
 
-export const db = new supabase_adapter();
+export const db = supabase_todo_adapter;
+
+export const auth = supabase_auth_adapter;
 

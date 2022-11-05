@@ -35,6 +35,6 @@
 		"@specialdoom/proi-ui": "^3.0.2",
 		"@supabase/supabase-js": "^2.0.4",
 		"firebase": "^9.12.1",
-		"j-supabase": "^1.0.6"
+		"j-supabase": "^1.0.8"
 	}
 }
