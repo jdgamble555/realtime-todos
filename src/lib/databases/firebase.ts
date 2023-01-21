@@ -40,25 +40,29 @@ const firebase_to_user = (i: FB_User): User => ({
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 
-export class firebase_adapter {
+export const firebase_auth_adapter = {
 
     // auth
 
-    loginWithGoogle = async () => await signInWithPopup(auth, new GoogleAuthProvider());
+    loginWithGoogle: async () => await signInWithPopup(auth, new GoogleAuthProvider()),
 
-    logout = async () => await signOut(auth);
+    logout: async () => await signOut(auth),
 
-    user = readable<User | null>(
+    user: readable<User | null>(
         null,
         (set: Subscriber<User | null>) =>
             onIdTokenChanged(auth, (u: FB_User | null) => {
                 set(u ? firebase_to_user(u) : null);
             })
-    );
+    )
+};
+
+
+export const firebase_todo_adapter = {
 
     // todos
 
-    getTodos = (uid: string) => readable<Todo[]>(
+    getTodos: (uid: string) => readable<Todo[]>(
         [],
         (set: Subscriber<Todo[]>) =>
             onSnapshot<Todo[]>(
@@ -72,16 +76,16 @@ export class firebase_adapter {
                         : q.docs.map((doc) => ({ ...doc.data() as any, id: doc.id })) as Todo[]
                     );
                 })
-    );
+    ),
 
-    addTodo = async (uid: string, text: string) => await addDoc(collection(db, 'todos'), {
+    addTodo: async (uid: string, text: string) => await addDoc(collection(db, 'todos'), {
         uid,
         text,
         complete: false,
         created: serverTimestamp()
-    });
+    }),
 
-    updateTodo = async (id: string, complete: boolean) => await updateDoc(doc(db, 'todos', id), { complete });
+    updateTodo: async (id: string, complete: boolean) => await updateDoc(doc(db, 'todos', id), { complete }),
 
-    deleteTodo = async (id: string) => await deleteDoc(doc(db, 'todos', id));
+    deleteTodo: async (id: string) => await deleteDoc(doc(db, 'todos', id))
 }

@@ -7,10 +7,10 @@ const config: UserConfig = {
 	plugins: [sveltekit()],
 	resolve: {
 		alias: {
-			'$components': resolve('src/components'),
-			'$routes': resolve('src/routes'),
-			'$stores': resolve('src/stores'),
-			'$styles': resolve('src/styles')
+			'$components': resolve('./src/components'),
+			'$routes': resolve('./src/routes'),
+			'$stores': resolve('./src/stores'),
+			'$styles': resolve('./src/styles')
 		}
 	}
 };

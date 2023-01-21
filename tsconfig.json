@@ -11,22 +11,22 @@
 		"strict": true,
 		"paths": {
 			"$lib": [
-				"src/lib"
+				"./src/lib"
 			],
 			"$lib/*": [
-				"src/lib/*"
+				"./src/lib/*"
 			],
 			"$components/*": [
-				"src/components/*"
+				"./src/components/*"
 			],
 			"$routes/*": [
-				"src/routes/*"
+				"./src/routes/*"
 			],
 			"$stores/*": [
-				"src/stores/*"
+				"./src/stores/*"
 			],
 			"$styles/*": [
-				"src/styles/*"
+				"./src/styles/*"
 			]
 		}
 	}

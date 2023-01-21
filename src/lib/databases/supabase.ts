@@ -60,7 +60,6 @@ export const supabase_todo_adapter = (uid: string): todo_adapter => {
                 todos = snap.data ? snap.data : [];
                 set(todos);
             });
-
     });
 
     return {

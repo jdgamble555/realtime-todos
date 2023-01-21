@@ -1,34 +1,29 @@
 <script lang="ts">
 	import { db } from '$lib/database';
+	import type { User } from '$lib/user.model';
 
-	export let user;
+	export let user: User;
 
-	const { deleteTodo, updateTodo, addTodo, getTodos } = db(user.uid);
-	const todos = getTodos;
+	const { deleteTodo, updateTodo, addTodo, getTodos } = db;
+	const todos = getTodos(user.uid);
 
-	const add = async (e: SubmitEvent) => {
+	const add = async (e: Event) => {
 		const t = e.target as HTMLFormElement;
 		const v = t.text.value;
 		t.reset();
-		addTodo(v);
+		addTodo(user.uid, v);
 	};
-	const toggle = (id: string, complete: boolean) => updateTodo(id, !complete);
-	const remove = (id: string) => deleteTodo(id);
 </script>
 
 {#if $todos}
 	<ol>
 		{#each $todos as todo}
 			<li>
-				<span>{todo.text}</span>
-				<button on:click={() => toggle(todo.id, todo.complete)}>
-					{#if todo.complete}
-						✔️
-					{:else}
-						❌
-					{/if}
+				<span class={todo.complete ? 'complete' : ''}>{todo.text}</span>
+				<button on:click={() => updateTodo(todo.id, !todo.complete)}>
+					{todo.complete ? '✔️' : '❌'}
 				</button>
-				<button on:click={() => remove(todo.id)}> 🗑 </button>
+				<button on:click={() => deleteTodo(todo.id)}> 🗑 </button>
 			</li>
 		{/each}
 	</ol>
@@ -38,3 +33,10 @@
 	<input name="text" />
 	<button type="submit">Add Task</button>
 </form>
+
+<style>
+	.complete {
+		text-decoration: line-through;
+		color: green;
+	}
+</style>
